@@ -36,8 +36,8 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleFavorite(){
-    if(favorites.contains(current)){
+  void toggleFavorite() {
+    if (favorites.contains(current)) {
       favorites.remove(current);
     } else {
       favorites.add(current);
@@ -57,55 +57,52 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     Widget page;
-    switch(selectedIndex){
+    switch (selectedIndex) {
       case 0:
         page = GeneratorPage();
         break;
       case 1:
-        page = Placeholder();
+        page = FavoritesPage();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
 
-
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        return Scaffold(
-          body: Row(
-            children: [
-              SafeArea(
-                child: NavigationRail(
-                  extended: constraints.maxWidth >= 600,
-                  destinations: [
-                    NavigationRailDestination(
-                      icon: Icon(Icons.home),
-                      label: Text('Home'),
-                    ),
-                    NavigationRailDestination(
-                      icon: Icon(Icons.favorite),
-                      label: Text('Favorites'),
-                    ),
-                  ],
-                  selectedIndex: selectedIndex,
-                  onDestinationSelected: (value) {
-                    setState((){
-                      selectedIndex = value;
-                    });
-                  },
-                ),
+    return LayoutBuilder(builder: (context, constraints) {
+      return Scaffold(
+        body: Row(
+          children: [
+            SafeArea(
+              child: NavigationRail(
+                extended: constraints.maxWidth >= 600,
+                destinations: [
+                  NavigationRailDestination(
+                    icon: Icon(Icons.home),
+                    label: Text('Home'),
+                  ),
+                  NavigationRailDestination(
+                    icon: Icon(Icons.favorite),
+                    label: Text('Favorites'),
+                  ),
+                ],
+                selectedIndex: selectedIndex,
+                onDestinationSelected: (value) {
+                  setState(() {
+                    selectedIndex = value;
+                  });
+                },
               ),
-              Expanded(
-                child: Container(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  child: page,
-                ),
+            ),
+            Expanded(
+              child: Container(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                child: page,
               ),
-            ],
-          ),
-        );
-      }
-    );
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
 
@@ -153,6 +150,20 @@ class GeneratorPage extends StatelessWidget {
   }
 }
 
+class FavoritesPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    var appState = context.watch<MyAppState>();
+    var favorites = appState.favorites;
+
+    return Scaffold(
+        body:
+        Text('You have ${favorites.length} favorites'),
+      // TODO: お気に入りの単語を表示する
+    );
+  }
+}
+
 class BigCard extends StatelessWidget {
   const BigCard({
     super.key,
@@ -180,5 +191,3 @@ class BigCard extends StatelessWidget {
     );
   }
 }
-
-

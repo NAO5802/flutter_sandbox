@@ -156,10 +156,25 @@ class FavoritesPage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
     var favorites = appState.favorites;
 
-    return Scaffold(
-        body:
-        Text('You have ${favorites.length} favorites'),
-      // TODO: お気に入りの単語を表示する
+    if(favorites.isEmpty){
+      return Center(
+        child: Text('No favorites yet'),
+      );
+    }
+
+    return ListView(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Text('You have ${favorites.length} favorites'),
+        ),
+        // for(var pair in favorites) ListTile(title: Text(pair.asLowerCase)),
+        ...favorites.map((pair)=> ListTile(
+            title: Text(pair.asLowerCase),
+            leading: Icon(Icons.favorite)
+          ),
+        ).toList()
+      ],
     );
   }
 }

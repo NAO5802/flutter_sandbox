@@ -31,20 +31,11 @@ class TextExample extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.grey[300],
         ),
-        child: Stack(children: [Positioned(
-            left: 24,
-            top: 24,
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.red[400]
-              ),
-              child: Text(
-                'hello red container',
-                style: bold24Roboto,
-              )
-            )
+        child: Transform(
+          alignment: Alignment.center,
+          transform: Matrix4.identity()..rotateZ(15 * 3.1415927 / 180),
+          child: childContainer,
         )
-        ]));
+    );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/layout.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -64,6 +65,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 1:
         page = FavoritesPage();
         break;
+      case 2:
+        page = TextExample();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -84,6 +88,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     icon: Icon(Icons.favorite),
                     label: Text('Favorites'),
                   ),
+                  NavigationRailDestination(
+                      icon: Icon(Icons.edit),
+                      label: Text('Text Example')
+                  )
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {

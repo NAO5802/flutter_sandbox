@@ -33,7 +33,7 @@ class TextExample extends StatelessWidget {
         ),
         child: Transform(
           alignment: Alignment.center,
-          transform: Matrix4.identity()..rotateZ(15 * 3.1415927 / 180),
+          transform: Matrix4.identity()..scale(2.0),
           child: childContainer,
         )
     );

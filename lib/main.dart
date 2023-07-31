@@ -85,13 +85,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     label: Text('Home'),
                   ),
                   NavigationRailDestination(
-                    icon: Icon(Icons.favorite),
+                    icon: Icon(key: Key('favorite_menu_icon'), Icons.favorite),
                     label: Text('Favorites'),
                   ),
                   NavigationRailDestination(
-                      icon: Icon(Icons.edit),
-                      label: Text('Text Example')
-                  )
+                      icon: Icon(Icons.edit), label: Text('Text Example'))
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {
@@ -137,6 +135,7 @@ class GeneratorPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               ElevatedButton.icon(
+                key: Key('like_button'),
                 onPressed: () {
                   appState.toggleFavorite();
                 },
@@ -164,7 +163,7 @@ class FavoritesPage extends StatelessWidget {
     var appState = context.watch<MyAppState>();
     var favorites = appState.favorites;
 
-    if(favorites.isEmpty){
+    if (favorites.isEmpty) {
       return Center(
         child: Text('No favorites yet'),
       );
@@ -177,11 +176,12 @@ class FavoritesPage extends StatelessWidget {
           child: Text('You have ${favorites.length} favorites'),
         ),
         // for(var pair in favorites) ListTile(title: Text(pair.asLowerCase)),
-        ...favorites.map((pair)=> ListTile(
-            title: Text(pair.asLowerCase),
-            leading: Icon(Icons.favorite)
-          ),
-        ).toList()
+        ...favorites
+            .map(
+              (pair) => ListTile(
+                  title: Text(pair.asLowerCase), leading: Icon(Icons.favorite)),
+            )
+            .toList()
       ],
     );
   }

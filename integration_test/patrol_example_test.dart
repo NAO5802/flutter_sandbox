@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:patrol/patrol.dart';
 
 void main() {
+  // ネイティブ自動化機能を使用するためにpatrol testで実行
   patrolTest(
       'count state is the same after going home and switching apps',
       nativeAutomation: true,

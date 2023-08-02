@@ -5,18 +5,26 @@ import 'package:patrol/patrol.dart';
 void main() {
   // ネイティブ自動化機能を使用するためにpatrol testで実行
   patrolTest(
-      'count state is the same after going home and switching apps',
+      'change dark mode',
       nativeAutomation: true,
-      ($) async {
+          ($) async {
 
         await $.pumpWidgetAndSettle(MaterialApp(
+          theme: ThemeData.light(),
+          darkTheme: ThemeData.dark(),
+          themeMode: ThemeMode.system,
           home: Scaffold(
-            appBar: AppBar(title: const Text("app"),),
-            backgroundColor: Colors.blue,
+            appBar: AppBar(title: const Text("app"))
           ),
         ));
 
         expect($("app"), findsOneWidget);
+        await $.pump(Duration(seconds: 3));
+
         await $.native.pressHome();
+        await $.native.enableDarkMode();
+        await $.native.openApp();
+
+        expect($("app"), findsOneWidget);
       });
 }

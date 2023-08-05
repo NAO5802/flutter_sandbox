@@ -1,6 +1,7 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/layout.dart';
+import 'package:flutter_sandbox/web_view.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -68,6 +69,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 2:
         page = TextExample();
         break;
+      case 3:
+        page = MyWebView();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -89,7 +93,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     label: Text('Favorites'),
                   ),
                   NavigationRailDestination(
-                      icon: Icon(Icons.edit), label: Text('Text Example'))
+                      icon: Icon(Icons.edit),
+                      label: Text('Text Example')
+                  ),
+                  NavigationRailDestination(
+                      icon: Icon(Icons.web),
+                      label: Text('Web View')
+                  )
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {
@@ -101,7 +111,10 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Expanded(
               child: Container(
-                color: Theme.of(context).colorScheme.primaryContainer,
+                color: Theme
+                    .of(context)
+                    .colorScheme
+                    .primaryContainer,
                 child: page,
               ),
             ),
@@ -178,9 +191,10 @@ class FavoritesPage extends StatelessWidget {
         // for(var pair in favorites) ListTile(title: Text(pair.asLowerCase)),
         ...favorites
             .map(
-              (pair) => ListTile(
+              (pair) =>
+              ListTile(
                   title: Text(pair.asLowerCase), leading: Icon(Icons.favorite)),
-            )
+        )
             .toList()
       ],
     );

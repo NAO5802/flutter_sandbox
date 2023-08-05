@@ -97,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       label: Text('Text Example')
                   ),
                   NavigationRailDestination(
-                      icon: Icon(Icons.web),
+                      icon: Icon(key: Key('webview_menu_icon'), Icons.web),
                       label: Text('Web View')
                   )
                 ],

@@ -14,7 +14,7 @@ Future<Album> fetchAlbum(http.Client client) async {
 }
 
 class Album {
-  static Album fromJson(dynamic jsonList) {
+  static Album fromJson(Map<String, dynamic> json) {
     // NOTE: 仮の実装
     return Album();
   }

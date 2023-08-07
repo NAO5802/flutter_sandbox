@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:io';
+import 'dart:developer' as developer;
+
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/layout.dart';
@@ -130,6 +134,11 @@ class GeneratorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
     var pair = appState.current;
+
+    // stderr.writeln('GeneratorPage#build');
+    // debugPrint('debug print');
+    // developer.log('developer log', name: 'my.app.category');
+    // developer.log('log', name: 'my.app', error: jsonEncode({'myError': 'error has occurred'}));
 
     IconData icon;
     if (appState.favorites.contains(pair)) {

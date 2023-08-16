@@ -1,10 +1,8 @@
-import 'dart:convert';
-import 'dart:io';
-import 'dart:developer' as developer;
 
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/layout.dart';
+import 'package:flutter_sandbox/navigation.dart';
 import 'package:flutter_sandbox/web_view.dart';
 import 'package:provider/provider.dart';
 
@@ -76,6 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 3:
         page = MyWebView();
         break;
+      case 4:
+        page = MyNavigation();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -103,6 +104,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   NavigationRailDestination(
                       icon: Icon(key: Key('webview_menu_icon'), Icons.web),
                       label: Text('Web View')
+                  ),
+                  NavigationRailDestination(
+                      icon: Icon(Icons.navigation),
+                      label: Text('Navigation')
                   )
                 ],
                 selectedIndex: selectedIndex,

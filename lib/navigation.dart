@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/main.dart';
 
 class MyNavigation extends StatelessWidget {
   @override
@@ -6,7 +7,9 @@ class MyNavigation extends StatelessWidget {
     return Center(
         child: MaterialButton(
           onPressed: (){
-            print('aaa');
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => GeneratorPage())
+            );
           },
           child: Text('click here'),
         ),

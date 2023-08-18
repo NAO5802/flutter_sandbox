@@ -1,4 +1,3 @@
-
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/layout.dart';
@@ -24,7 +23,28 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
-        home: MyHomePage(),
+        home: DefaultTabController(
+            length: 3,
+            child: Scaffold(
+              appBar: AppBar(
+                bottom: const TabBar(tabs: [
+                  Tab(
+                    icon: Icon(Icons.home),
+                  ),
+                  Tab(
+                    icon: Icon(Icons.comment),
+                  ),
+                  Tab(
+                    icon: Icon(Icons.calendar_month),
+                  ),
+                ]),
+              ),
+              body: TabBarView(children: [
+                GeneratorPage(),
+                FavoritesPage(),
+                TextExample(),
+              ]),
+            )),
       ),
     );
   }
@@ -98,17 +118,12 @@ class _MyHomePageState extends State<MyHomePage> {
                     label: Text('Favorites'),
                   ),
                   NavigationRailDestination(
-                      icon: Icon(Icons.edit),
-                      label: Text('Text Example')
-                  ),
+                      icon: Icon(Icons.edit), label: Text('Text Example')),
                   NavigationRailDestination(
                       icon: Icon(key: Key('webview_menu_icon'), Icons.web),
-                      label: Text('Web View')
-                  ),
+                      label: Text('Web View')),
                   NavigationRailDestination(
-                      icon: Icon(Icons.navigation),
-                      label: Text('Navigation')
-                  )
+                      icon: Icon(Icons.navigation), label: Text('Navigation'))
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {
@@ -120,10 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Expanded(
               child: Container(
-                color: Theme
-                    .of(context)
-                    .colorScheme
-                    .primaryContainer,
+                color: Theme.of(context).colorScheme.primaryContainer,
                 child: page,
               ),
             ),
@@ -205,10 +217,9 @@ class FavoritesPage extends StatelessWidget {
         // for(var pair in favorites) ListTile(title: Text(pair.asLowerCase)),
         ...favorites
             .map(
-              (pair) =>
-              ListTile(
+              (pair) => ListTile(
                   title: Text(pair.asLowerCase), leading: Icon(Icons.favorite)),
-        )
+            )
             .toList()
       ],
     );

@@ -23,28 +23,29 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
-        home: DefaultTabController(
-            length: 3,
-            child: Scaffold(
-              appBar: AppBar(
-                bottom: const TabBar(tabs: [
-                  Tab(
-                    icon: Icon(Icons.home),
-                  ),
-                  Tab(
-                    icon: Icon(Icons.comment),
-                  ),
-                  Tab(
-                    icon: Icon(Icons.calendar_month),
-                  ),
-                ]),
-              ),
-              body: TabBarView(children: [
-                GeneratorPage(),
-                FavoritesPage(),
-                TextExample(),
-              ]),
-            )),
+        home: MyHomePage(),
+        // DefaultTabController(
+        //     length: 3,
+        //     child: Scaffold(
+        //       appBar: AppBar(
+        //         bottom: const TabBar(tabs: [
+        //           Tab(
+        //             icon: Icon(Icons.home),
+        //           ),
+        //           Tab(
+        //             icon: Icon(Icons.comment),
+        //           ),
+        //           Tab(
+        //             icon: Icon(Icons.calendar_month),
+        //           ),
+        //         ]),
+        //       ),
+        //       body: TabBarView(children: [
+        //         GeneratorPage(),
+        //         FavoritesPage(),
+        //         TextExample(),
+        //       ]),
+        //     )),
       ),
     );
   }

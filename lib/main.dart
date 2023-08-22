@@ -2,6 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/layout.dart';
 import 'package:flutter_sandbox/navigation.dart';
+import 'package:flutter_sandbox/selection.dart';
 import 'package:flutter_sandbox/todo.dart';
 import 'package:flutter_sandbox/web_view.dart';
 import 'package:provider/provider.dart';
@@ -78,8 +79,12 @@ class _MyHomePageState extends State<MyHomePage> {
         page = MyNavigation();
         break;
       case 5:
-        final todos = List.generate(20, (index) => Todo('TODO $index', 'description of $index'));
+        final todos = List.generate(
+            20, (index) => Todo('TODO $index', 'description of $index'));
         page = TodoScreen(todos: todos);
+        break;
+      case 6:
+        page = SelectionScreen();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
@@ -110,6 +115,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       icon: Icon(Icons.navigation), label: Text('Navigation')),
                   NavigationRailDestination(
                       icon: Icon(Icons.list), label: Text('Todo List')),
+                  NavigationRailDestination(
+                      icon: Icon(Icons.select_all), label: Text('Select option')),
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {

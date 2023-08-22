@@ -24,6 +24,7 @@ class TodoScreen extends StatelessWidget {
           itemBuilder: (content, index) {
             return ListTile(title: Text(todos[index].title),);
           },
-    ),);
+    ),
+    );
   }
 }

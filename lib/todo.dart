@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/todo_detail.dart';
 
 class Todo {
   final String title;
@@ -7,9 +8,6 @@ class Todo {
 
   const Todo(this.title, this.description);
 }
-
-final todos =
-List.generate(20, (index) => Todo('TODO $index', 'description of $index'));
 
 class TodoScreen extends StatelessWidget {
   const TodoScreen({super.key, required this.todos});
@@ -22,7 +20,15 @@ class TodoScreen extends StatelessWidget {
       child: ListView.builder(
           itemCount: todos.length,
           itemBuilder: (content, index) {
-            return ListTile(title: Text(todos[index].title),);
+            return ListTile(
+              title: Text(todos[index].title),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => DetailScreen(todo: todos[index]))
+                );
+              },
+            );
           },
     ),
     );

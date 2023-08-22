@@ -2,6 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sandbox/layout.dart';
 import 'package:flutter_sandbox/navigation.dart';
+import 'package:flutter_sandbox/todo.dart';
 import 'package:flutter_sandbox/web_view.dart';
 import 'package:provider/provider.dart';
 
@@ -24,28 +25,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
         home: MyHomePage(),
-        // DefaultTabController(
-        //     length: 3,
-        //     child: Scaffold(
-        //       appBar: AppBar(
-        //         bottom: const TabBar(tabs: [
-        //           Tab(
-        //             icon: Icon(Icons.home),
-        //           ),
-        //           Tab(
-        //             icon: Icon(Icons.comment),
-        //           ),
-        //           Tab(
-        //             icon: Icon(Icons.calendar_month),
-        //           ),
-        //         ]),
-        //       ),
-        //       body: TabBarView(children: [
-        //         GeneratorPage(),
-        //         FavoritesPage(),
-        //         TextExample(),
-        //       ]),
-        //     )),
       ),
     );
   }
@@ -98,6 +77,10 @@ class _MyHomePageState extends State<MyHomePage> {
       case 4:
         page = MyNavigation();
         break;
+      case 5:
+        final todos = List.generate(20, (index) => Todo('TODO $index', 'description of $index'));
+        page = TodoScreen(todos: todos);
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -124,7 +107,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       icon: Icon(key: Key('webview_menu_icon'), Icons.web),
                       label: Text('Web View')),
                   NavigationRailDestination(
-                      icon: Icon(Icons.navigation), label: Text('Navigation'))
+                      icon: Icon(Icons.navigation), label: Text('Navigation')),
+                  NavigationRailDestination(
+                      icon: Icon(Icons.list), label: Text('Todo List')),
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {

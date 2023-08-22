@@ -25,7 +25,13 @@ class TodoScreen extends StatelessWidget {
               onTap: () {
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => DetailScreen(todo: todos[index]))
+                    // MaterialPageRoute(builder: (context) => DetailScreen(todo: todos[index]))
+                    MaterialPageRoute(
+                        builder: (context) => DetailScreen(),
+                        settings: RouteSettings(
+                          arguments: todos[index]
+                        )
+                    )
                 );
               },
             );

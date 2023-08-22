@@ -84,7 +84,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = TodoScreen(todos: todos);
         break;
       case 6:
-        page = SelectionScreen();
+        page = MySelectionScreen();
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');

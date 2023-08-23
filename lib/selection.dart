@@ -37,7 +37,7 @@ Future<void> _navigationAndDisplaySelection(BuildContext context) async {
     MaterialPageRoute(builder: (context) => const SelectionScreen())
   );
 
-  // if(!mounted) return;
+  if(!context.mounted) return;
 
   ScaffoldMessenger.of(context)
    ..removeCurrentSnackBar()

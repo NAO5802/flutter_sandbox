@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/drawer.dart';
 import 'package:flutter_sandbox/layout.dart';
 import 'package:flutter_sandbox/navigation.dart';
 import 'package:flutter_sandbox/selection.dart';
@@ -86,6 +87,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 6:
         page = MySelectionScreen();
         break;
+      case 7:
+        page = MyDrawer();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -117,6 +121,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       icon: Icon(Icons.list), label: Text('Todo List')),
                   NavigationRailDestination(
                       icon: Icon(Icons.select_all), label: Text('Select option')),
+                  NavigationRailDestination(
+                      icon: Icon(Icons.menu), label: Text('Drawer')),
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {

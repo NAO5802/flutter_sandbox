@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_sandbox/cart/shopper_main.dart';
 import 'package:flutter_sandbox/drawer.dart';
 import 'package:flutter_sandbox/layout.dart';
 import 'package:flutter_sandbox/navigation.dart';
@@ -90,6 +91,9 @@ class _MyHomePageState extends State<MyHomePage> {
       case 7:
         page = MyDrawer();
         break;
+      case 8:
+        page = MyShopper();
+        break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -120,9 +124,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   NavigationRailDestination(
                       icon: Icon(Icons.list), label: Text('Todo List')),
                   NavigationRailDestination(
-                      icon: Icon(Icons.select_all), label: Text('Select option')),
+                      icon: Icon(Icons.select_all),
+                      label: Text('Select option')),
                   NavigationRailDestination(
                       icon: Icon(Icons.menu), label: Text('Drawer')),
+                  NavigationRailDestination(
+                      icon: Icon(Icons.add_shopping_cart), label: Text('shopper')),
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {

@@ -9,6 +9,7 @@ class CartModel extends ChangeNotifier {
   final List<Item> _items = [];
 
   UnmodifiableListView<Item> get items => UnmodifiableListView(_items);
+  int get totalPrice => items.fold(0,(total, current)=> total + current.price);
 
   CatalogModel get catalog => _catalog;
 

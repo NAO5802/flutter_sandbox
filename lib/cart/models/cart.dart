@@ -9,14 +9,21 @@ class CartModel extends ChangeNotifier {
   final List<Item> _items = [];
 
   UnmodifiableListView<Item> get items => UnmodifiableListView(_items);
+
   CatalogModel get catalog => _catalog;
-  set catalog(CatalogModel newCatalog){
+
+  set catalog(CatalogModel newCatalog) {
     _catalog = newCatalog;
     notifyListeners();
   }
 
   void add(Item item) {
     _items.add(item);
+    notifyListeners();
+  }
+
+  void remove(Item item) {
+    _items.remove(item);
     notifyListeners();
   }
 }

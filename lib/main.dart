@@ -1,5 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sandbox/cart/shopper_main.dart';
 import 'package:flutter_sandbox/drawer.dart';
 import 'package:flutter_sandbox/hello_world.dart';
@@ -20,17 +21,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // アプリ全体にstateを提供する
-    return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
-      child: MaterialApp(
+    // return ChangeNotifierProvider(
+    //   create: (context) => MyAppState(),
+    //   child: MaterialApp(
+    //     title: 'Namer App',
+    //     theme: ThemeData(
+    //       useMaterial3: true,
+    //       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+    //     ),
+    //     home: MyHomePage(),
+    //   ),
+    // );
+    return MaterialApp(
         title: 'Namer App',
         theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
         ),
-        home: MyHomePage(),
-      ),
-    );
+        home: ProviderScope(child: MyHelloWorld()),
+      );
   }
 }
 
@@ -96,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = MyShopper();
         break;
       case 9:
-        page = MyHelloWorld();
+        page = ProviderScope(child: MyHelloWorld());
         break;
       default:
         throw UnimplementedError('no widget for $selectedIndex');

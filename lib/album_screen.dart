@@ -13,6 +13,7 @@ class MyAlbum extends StatefulWidget {
 class _MyAlbumState extends State<MyAlbum> {
   late Future<Album> futureAlbum;
   final client = http.Client();
+  final TextEditingController _controller = TextEditingController();
 
   @override
   void initState() {
@@ -23,20 +24,37 @@ class _MyAlbumState extends State<MyAlbum> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: FutureBuilder<Album>(
-          future: futureAlbum,
-          builder: (context, snapshot) {
-            if(snapshot.hasData){
-              return Text(snapshot.data!.title);
-            }else if(snapshot.hasError) {
-              return Text('${snapshot.error}');
-            }
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Center(
+            child: FutureBuilder<Album>(
+              future: futureAlbum,
+              builder: (context, snapshot) {
+                if(snapshot.hasData){
+                  return Text(snapshot.data!.title);
+                }else if(snapshot.hasError) {
+                  return Text('${snapshot.error}');
+                }
 
-            // default
-            return const CircularProgressIndicator();
-          },
-        ),
+                // default
+                return const CircularProgressIndicator();
+              },
+            ),
+          ),
+          TextField(
+            controller: _controller,
+            decoration: InputDecoration(hintText: 'Enter title'),
+          ),
+          ElevatedButton(
+              onPressed: (){
+                setState(() {
+                  futureAlbum = createAlbum(_controller.text);
+                });
+              },
+              child: const Text('Create Data')
+          )
+        ],
       ),
     );
   }

@@ -14,8 +14,17 @@ Future<Album> fetchAlbum(http.Client client) async {
 }
 
 class Album {
+  final int userId;
+  final int id;
+  final String title;
+
+  const Album({required this.userId, required this.id, required this.title});
+
   static Album fromJson(Map<String, dynamic> json) {
-    // NOTE: 仮の実装
-    return Album();
+    return Album(
+      userId: json['userId'],
+      id: json['id'],
+      title: json['title']
+    );
   }
 }

@@ -36,15 +36,13 @@ Future<Album> createAlbum(String title) async{
 }
 
 class Album {
-  final int userId;
   final int id;
   final String title;
 
-  const Album({required this.userId, required this.id, required this.title});
+  const Album({required this.id, required this.title});
 
   static Album fromJson(Map<String, dynamic> json) {
     return Album(
-        userId: json['userId'],
         id: json['id'],
         title: json['title']
     );

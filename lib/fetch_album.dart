@@ -35,6 +35,18 @@ Future<Album> createAlbum(String title) async{
   }
 }
 
+Future<http.Response> updateAlbum(String title) {
+  return http.put(
+    Uri.parse('https://jsonplaceholder.typicode.com/albums/1'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8'
+    },
+      body: jsonEncode(<String, String>{
+        'title': title
+      })
+  );
+}
+
 class Album {
   final int id;
   final String title;

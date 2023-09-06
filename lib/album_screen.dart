@@ -49,10 +49,10 @@ class _MyAlbumState extends State<MyAlbum> {
           ElevatedButton(
               onPressed: (){
                 setState(() {
-                  futureAlbum = createAlbum(_controller.text);
+                  futureAlbum = updateAlbum(_controller.text);
                 });
               },
-              child: const Text('Create Data')
+              child: const Text('Update Data')
           )
         ],
       ),

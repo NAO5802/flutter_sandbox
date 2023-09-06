@@ -35,8 +35,8 @@ Future<Album> createAlbum(String title) async{
   }
 }
 
-Future<http.Response> updateAlbum(String title) {
-  return http.put(
+Future<Album> updateAlbum(String title) async{
+  final response = await http.put(
     Uri.parse('https://jsonplaceholder.typicode.com/albums/1'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8'
@@ -45,6 +45,12 @@ Future<http.Response> updateAlbum(String title) {
         'title': title
       })
   );
+
+  if(response.statusCode == 200) {
+    return Album.fromJson(jsonDecode(response.body));
+  } else {
+    throw Exception('Failed to update album');
+  }
 }
 
 class Album {

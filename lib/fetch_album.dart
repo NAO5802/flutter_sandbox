@@ -2,6 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
+import 'package:json_annotation/json_annotation.dart';
+
+part 'fetch_album.g.dart';
 
 Future<Album> fetchAlbum(http.Client client) async {
   final response = await client
@@ -53,16 +56,15 @@ Future<Album> updateAlbum(String title) async{
   }
 }
 
+@JsonSerializable()
 class Album {
+  Album(this.id, this.title);
+
+  @JsonKey(required: true)
   final int id;
+  @JsonKey(required: true, defaultValue: 'default title')
   final String title;
 
-  const Album({required this.id, required this.title});
-
-  static Album fromJson(Map<String, dynamic> json) {
-    return Album(
-        id: json['id'],
-        title: json['title']
-    );
-  }
+  factory Album.fromJson(Map<String, dynamic> json) => _$AlbumFromJson(json);
+  Map<String, dynamic> toJson() => _$AlbumToJson(this);
 }

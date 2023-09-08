@@ -1,12 +1,13 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
+
 // import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_sandbox/album_screen.dart';
 import 'package:flutter_sandbox/cart/shopper_main.dart';
 import 'package:flutter_sandbox/drawer.dart';
-import 'package:flutter_sandbox/hello_world.dart';
 import 'package:flutter_sandbox/layout.dart';
 import 'package:flutter_sandbox/navigation.dart';
+import 'package:flutter_sandbox/photo_screen.dart';
 import 'package:flutter_sandbox/selection.dart';
 import 'package:flutter_sandbox/todo.dart';
 import 'package:flutter_sandbox/web_view.dart';
@@ -112,6 +113,8 @@ class _MyHomePageState extends State<MyHomePage> {
       case 10:
         page = MyAlbum();
         break;
+      case 11:
+        page = MyPhoto();
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -153,6 +156,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       icon: Icon(Icons.podcasts), label: Text('riverpod')),
                   NavigationRailDestination(
                       icon: Icon(Icons.album), label: Text('Album')),
+                  NavigationRailDestination(
+                      icon: Icon(Icons.photo), label: Text('Photo')),
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {

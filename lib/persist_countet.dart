@@ -21,9 +21,15 @@ class _PersistCounterState extends State<PersistCounter> {
         child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('count: $_counter'),
-        ElevatedButton(onPressed: _incrementCounter, child: Icon(Icons.add)),
-        ElevatedButton(onPressed: _resetCounter, child: Icon(Icons.lock_reset)),
+        Text('count from shared preference: $_counter'),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(onPressed: _incrementCounter, child: Icon(Icons.add)),
+            SizedBox(width: 16),
+            ElevatedButton(onPressed: _resetCounter, child: Icon(Icons.lock_reset)),
+          ],
+        ),
       ],
     ));
   }

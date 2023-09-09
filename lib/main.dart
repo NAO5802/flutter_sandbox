@@ -7,6 +7,7 @@ import 'package:flutter_sandbox/cart/shopper_main.dart';
 import 'package:flutter_sandbox/drawer.dart';
 import 'package:flutter_sandbox/layout.dart';
 import 'package:flutter_sandbox/navigation.dart';
+import 'package:flutter_sandbox/persist_countet.dart';
 import 'package:flutter_sandbox/photo_screen.dart';
 import 'package:flutter_sandbox/selection.dart';
 import 'package:flutter_sandbox/todo.dart';
@@ -115,6 +116,8 @@ class _MyHomePageState extends State<MyHomePage> {
         break;
       case 11:
         page = MyPhoto();
+      case 12:
+        page = PersistCounter();
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
@@ -158,6 +161,9 @@ class _MyHomePageState extends State<MyHomePage> {
                       icon: Icon(Icons.album), label: Text('Album')),
                   NavigationRailDestination(
                       icon: Icon(Icons.photo), label: Text('Photo')),
+                  NavigationRailDestination(
+                      icon: Icon(Icons.countertops),
+                      label: Text('Persist Counter')),
                 ],
                 selectedIndex: selectedIndex,
                 onDestinationSelected: (value) {

@@ -10,6 +10,9 @@ PODS:
   - CNIOLinux (2.40.0)
   - CNIOWindows (2.40.0)
   - Flutter (1.0.0)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - gRPC-Swift (1.8.0):
     - CGRPCZlib (= 1.8.0)
     - Logging (< 2.0.0, >= 1.4.0)
@@ -31,6 +34,9 @@ PODS:
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
+  - sqflite (0.0.3):
+    - Flutter
+    - FMDB (>= 2.7.5)
   - SwiftNIO (2.40.0):
     - _NIODataStructures (= 2.40.0)
     - CNIOAtomics (= 2.40.0)
@@ -171,6 +177,7 @@ DEPENDENCIES:
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - patrol (from `.symlinks/plugins/patrol/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
+  - sqflite (from `.symlinks/plugins/sqflite/ios`)
   - webview_flutter_wkwebview (from `.symlinks/plugins/webview_flutter_wkwebview/ios`)
 
 SPEC REPOS:
@@ -184,6 +191,7 @@ SPEC REPOS:
     - CNIOHTTPParser
     - CNIOLinux
     - CNIOWindows
+    - FMDB
     - gRPC-Swift
     - Logging
     - SwiftNIO
@@ -212,6 +220,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/patrol/ios"
   shared_preferences_foundation:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
+  sqflite:
+    :path: ".symlinks/plugins/sqflite/ios"
   webview_flutter_wkwebview:
     :path: ".symlinks/plugins/webview_flutter_wkwebview/ios"
 
@@ -226,12 +236,14 @@ SPEC CHECKSUMS:
   CNIOLinux: 62e3505f50de558c393dc2f273dde71dcce518da
   CNIOWindows: 3047f2d8165848a3936a0a755fee27c6b5ee479b
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   gRPC-Swift: 74adcaaa62ac5e0a018938840328cb1fdfb09e7b
   integration_test: 13825b8a9334a850581300559b8839134b124670
   Logging: beeb016c9c80cf77042d62e83495816847ef108b
   path_provider_foundation: 29f094ae23ebbca9d3d0cec13889cd9060c0e943
   patrol: a7622350c42b3a944962fbfe052d07e3691789e5
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
+  sqflite: 31f7eba61e3074736dff8807a9b41581e4f7f15a
   SwiftNIO: 829958aab300642625091f82fc2f49cb7cf4ef24
   SwiftNIOConcurrencyHelpers: 697370136789b1074e4535eaae75cbd7f900370e
   SwiftNIOCore: 473fdfe746534d7aa25766916459eeaf6f92ef49

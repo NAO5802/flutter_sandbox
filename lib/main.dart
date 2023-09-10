@@ -13,9 +13,30 @@ import 'package:flutter_sandbox/photo_screen.dart';
 import 'package:flutter_sandbox/selection.dart';
 import 'package:flutter_sandbox/todo.dart';
 import 'package:flutter_sandbox/web_view.dart';
+import 'package:path/path.dart';
 import 'package:provider/provider.dart';
+import 'package:sqflite/sqflite.dart';
 
-void main() {
+import 'dog/model.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final database =
+      openDatabase(
+          join(await getDatabasesPath(), 'doggie_database.db'),
+          onCreate: (db, version) {
+            return db.execute('CREATE TABLE dogs(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)');
+          },
+          version: 1
+      );
+
+  Future<void> insertDog(Dog dog) async {
+    final db = await database;
+    await db.insert('dogs', dog.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
+  }
+
+
+  await insertDog(Dog(id: 1, name: 'taro', age: 10));
   runApp(MyApp());
 }
 
@@ -119,7 +140,9 @@ class _MyHomePageState extends State<MyHomePage> {
         page = MyPhoto();
       case 12:
         // page = PersistCounter();
-        page = PersistCounter2(storage: CounterStorage(),);
+        page = PersistCounter2(
+          storage: CounterStorage(),
+        );
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }

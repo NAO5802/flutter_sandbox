@@ -35,8 +35,22 @@ void main() async {
     await db.insert('dogs', dog.toMap(), conflictAlgorithm: ConflictAlgorithm.replace);
   }
 
+  Future<List<Dog>> dogs() async {
+    final db = await database;
+    final List<Map<String, dynamic>> maps = await db.query('dogs');
+
+    return List.generate(maps.length, (index) {
+      return Dog(
+          id: maps[index]['id'],
+          name: maps[index]['name'],
+          age: maps[index]['age']
+      );
+    });
+  }
 
   await insertDog(Dog(id: 1, name: 'taro', age: 10));
+  final dogList = await dogs();
+  print('${dogList.length}, ${dogList[0].name}');
   runApp(MyApp());
 }
 

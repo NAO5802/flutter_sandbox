@@ -16,14 +16,6 @@ class PersistCounter2 extends StatefulWidget {
 class _PersistCounter2State extends State<PersistCounter2>{
   int _counter = 0;
 
-  Future<File> _incrementCounter() {
-   setState(() {
-      _counter++;
-    });
-   // return widget.storage.writeCounter(_counter);
-  throw UnimplementedError();
-  }
-
   @override
   void initState() {
     super.initState();
@@ -52,6 +44,13 @@ class _PersistCounter2State extends State<PersistCounter2>{
           ],
         ));
   }
+
+  Future<File> _incrementCounter(){
+    setState(() {
+      _counter++;
+    });
+    return widget.storage.writeCounter(_counter);
+  }
 }
 
 class CounterStorage {
@@ -75,5 +74,11 @@ class CounterStorage {
     } catch (e) {
       return 0;
     }
+  }
+
+  Future<File> writeCounter(int counter) async {
+    final file = await _localFile;
+
+    return file.writeAsString('$counter');
   }
 }

@@ -70,7 +70,9 @@ class CounterStorage {
     try {
       final file = await _localFile;
 
-      return 1;
+      final contents = await file.readAsString();
+
+      return int.parse(contents);
     } catch (e) {
       return 0;
     }

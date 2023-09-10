@@ -48,9 +48,19 @@ void main() async {
     });
   }
 
+  Future<void> updateDog(Dog dog) async {
+    final db = await database;
+    await db.update('dogs',dog.toMap(), where: 'id = ?', whereArgs: [dog.id]);
+  }
+
+
   await insertDog(Dog(id: 1, name: 'taro', age: 10));
   final dogList = await dogs();
   print('${dogList.length}, ${dogList[0].name}');
+  await updateDog(Dog(id: 1, name: 'jiro', age: 20));
+  final dogList2 = await dogs();
+  print('${dogList2.length}, ${dogList2[0].name}');
+
   runApp(MyApp());
 }
 

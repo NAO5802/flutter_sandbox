@@ -56,7 +56,6 @@ class _PersistCounter2State extends State<PersistCounter2>{
 class CounterStorage {
   Future<File> get _localFile async {
     final path = await _localPath;
-    print('path $path');
     return File('$path/counter.txt');
   }
 

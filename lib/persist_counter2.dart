@@ -1,10 +1,14 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 
 class PersistCounter2 extends StatefulWidget {
+  const PersistCounter2({super.key, required this.storage});
+
+  final CounterStorage storage;
+
   @override
   State<PersistCounter2> createState() => _PersistCounter2State();
 }
@@ -12,26 +16,22 @@ class PersistCounter2 extends StatefulWidget {
 class _PersistCounter2State extends State<PersistCounter2>{
   int _counter = 0;
 
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    print('path $path');
-    return File('$path/counter.txt');
-  }
-
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-
-    return directory.path;
+  Future<File> _incrementCounter() {
+   setState(() {
+      _counter++;
+    });
+   // return widget.storage.writeCounter(_counter);
+  throw UnimplementedError();
   }
 
   @override
   void initState() {
     super.initState();
-    _loadCounter().then((value) => {
+    widget.storage.loadCounter().then((value) => {
       setState((){
         _counter = value;
       })
-    });
+     });
   }
 
   @override
@@ -44,7 +44,7 @@ class _PersistCounter2State extends State<PersistCounter2>{
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // ElevatedButton(onPressed: _incrementCounter, child: Icon(Icons.add)),
+                ElevatedButton(onPressed: _incrementCounter, child: Icon(Icons.add)),
                 SizedBox(width: 16),
                 // ElevatedButton(onPressed: _resetCounter, child: Icon(Icons.lock_reset)),
               ],
@@ -52,8 +52,22 @@ class _PersistCounter2State extends State<PersistCounter2>{
           ],
         ));
   }
+}
 
-  Future<int> _loadCounter() async {
+class CounterStorage {
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    print('path $path');
+    return File('$path/counter.txt');
+  }
+
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<int> loadCounter() async {
     try {
       final file = await _localFile;
 

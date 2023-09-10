@@ -8,6 +8,7 @@ import 'package:flutter_sandbox/drawer.dart';
 import 'package:flutter_sandbox/layout.dart';
 import 'package:flutter_sandbox/navigation.dart';
 import 'package:flutter_sandbox/persist_counter2.dart';
+import 'package:flutter_sandbox/persist_countet.dart';
 import 'package:flutter_sandbox/photo_screen.dart';
 import 'package:flutter_sandbox/selection.dart';
 import 'package:flutter_sandbox/todo.dart';
@@ -118,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
         page = MyPhoto();
       case 12:
         // page = PersistCounter();
-        page = PersistCounter2();
+        page = PersistCounter2(storage: CounterStorage(),);
       default:
         throw UnimplementedError('no widget for $selectedIndex');
     }
